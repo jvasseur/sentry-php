@@ -40,11 +40,13 @@ final class EventTest extends TestCase
 
     public function testToArray(): void
     {
-        $event = new Event();
+        $timestamp = gmdate('Y-m-d\TH:i:s\Z');
+
+        $event = new Event(null, $timestamp);
 
         $expected = [
             'event_id' => (string) $event->getId(false),
-            'timestamp' => gmdate('Y-m-d\TH:i:s\Z'),
+            'timestamp' => $timestamp,
             'level' => 'error',
             'platform' => 'php',
             'sdk' => [

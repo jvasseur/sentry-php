@@ -152,12 +152,13 @@ final class Event implements \JsonSerializable
     /**
      * Class constructor.
      *
-     * @param EventId|null $eventId The ID of the event
+     * @param EventId|null $eventId    The ID of the event
+     * @param string|null  $occurredAt The timestamp when the event occured
      */
-    public function __construct(?EventId $eventId = null)
+    public function __construct(?EventId $eventId = null, ?string $occurredAt = null)
     {
         $this->id = $eventId ?? EventId::generate();
-        $this->timestamp = gmdate('Y-m-d\TH:i:s\Z');
+        $this->timestamp = $occurredAt ?? gmdate('Y-m-d\TH:i:s\Z');
         $this->level = Severity::error();
         $this->serverOsContext = new ServerOsContext();
         $this->runtimeContext = new RuntimeContext();
